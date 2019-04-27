@@ -14,6 +14,7 @@ import java.util.List;
 //import javax.persistence.Table;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -38,34 +39,25 @@ public class Employee {
 	private String fname;
 	@Field
 	private String lname;
+	@Indexed
 	@Field
 	private String email;
 	@Field
 	private String phone;
 	@Field
 	private String address;
-	@DBRef
-	private List<Department> department = new ArrayList<>();
-	@DBRef
-	private List<Task> task= new ArrayList<>();
-//	public Employee(String fname, String lname, String email, String phone, String address, Department department, Task task) {
-//		super();
-//		this.fname = fname;
-//		this.lname = lname;
-//		this.email = email;
-//		this.phone = phone;
-//		this.address = address;
-//		this.department = department;
-//		this.task = task;
-//	}
+	@Field
+	private Department department;
+	@Field
+	private Task task;
+
 	
 	public Employee() {
 		super();
 	}
 
 
-	public Employee(String fname, String lname, String email, String phone, String address, List<Department> department,
-			List<Task> task) {
+	public Employee(String fname, String lname, String email, String phone, String address, Department department, Task task) {
 		super();
 		this.fname = fname;
 		this.lname = lname;
@@ -114,38 +106,27 @@ public class Employee {
 		this.address = address;
 	}
 	
-public List<Department> getDepartment() {
+
+	public Department getDepartment() {
 		return department;
 	}
 
 
-	public void setDepartment(List<Department> department) {
+	public void setDepartment(Department department) {
 		this.department = department;
 	}
 
 
-	public List<Task> getTask() {
+	public Task getTask() {
 		return task;
 	}
 
 
-	public void setTask(List<Task> task) {
+	public void setTask(Task task) {
 		this.task = task;
 	}
 
 
-	//	public Department getDepartment() {
-//		return department;
-//	}
-//	public void setDepartment(Department department) {
-//		this.department = department;
-//	}
-//	public Task getTask() {
-//		return task;
-//	}
-//	public void setTask(Task task) {
-//		this.task = task;
-//	}
 	@Override
 	public String toString() {
 		return String.format(

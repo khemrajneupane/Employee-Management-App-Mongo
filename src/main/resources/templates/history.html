@@ -61,17 +61,22 @@
 						class="form-control-plaintext col-md-6" placeholder="address" id="address"
 						th:field="*{address}" />
 				</div>
-	<!-- 			
+ 	
+	
+					
+					
+			
 				<div class="form-row">
 					<label for="dep" class="form-control-plaintext col-md-4">Department Name: </label> 
-					<input th:field="${employee.department.name}" type="text" readonly disabled
+					<input th:each="d : ${departments}" th:text="${d.name}" type="text" readonly disabled
 						class="form-control-plaintext col-md-6" id = "dep" />
 				</div>
 				<div class="form-row">
 					<label for="name" class="form-control-plaintext col-md-4">Task Name: </label> 
-					<input th:field="${employee.task.name}" type="text" readonly disabled
+					<input th:each="t : ${tasks}" th:text="${t.name}" type="text" readonly disabled
 						class="form-control-plaintext col-md-6" id = "name" />
-				</div>		
+				</div>
+	<!--		
 				<div class="form-row">
 					<label for="startime" class="form-control-plaintext col-md-4">Task Taken Date: </label> 
 					<input th:field="${employee.task.startime}" type="text" readonly disabled

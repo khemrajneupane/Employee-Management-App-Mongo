@@ -26,13 +26,13 @@ public class EmployeeRecordApplication {
 	@Bean
 	public ApplicationRunner demo(EmployeeRepository emprepo, DepartmentRepository deprepo, UserRepository usr, TaskRepository taskrepo) {
 		return (args) -> {
-//			deprepo.save(new Department("Science"));
-//			deprepo.save(new Department("IT"));
-//			taskrepo.save(new Task("Swimming","2019","Swimming program",400,"Yes"));
-//			taskrepo.save(new Task("Application","1979","Building app program",3500,"No"));
-//			emprepo.save(new Employee("Muna","Ghimire","muna@tuna.com","43261408","Chandragadhi-6", deprepo.findByName("Science").get(0), taskrepo.findByName("Swimming").get(0)));	
-//			emprepo.save(new Employee("Madhan","Bhadari","madan@gadhan.com","45396108","Dhanushmod-9", deprepo.findByName("IT").get(0), taskrepo.findByName("Application").get(0)));
-//			
+			
+			deprepo.save(new Department("IT"));
+
+			taskrepo.save(new Task("Application","1979","Building app program",3500,"No"));
+		
+			emprepo.save(new Employee("Madhan","Bhadari","madan@gadhan.com","45396108","Dhanushmod-9", deprepo.findByName("IT").get(0), taskrepo.findByName("Application").get(0)));
+			
 			
 			/*EmployeeDB   //insert into Task values(4000,"Field marketing",true,"Marketing","2019-04-25");
 			 * CREATE TABLE Department (

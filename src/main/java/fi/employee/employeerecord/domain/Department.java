@@ -10,6 +10,7 @@ import java.util.List;
 //import javax.persistence.OneToMany;
 //import javax.persistence.Table;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 //import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -26,6 +27,7 @@ public class Department {
 	@Id
 	@Field
 	private String id;
+	@Indexed
 	@Field
 	private String name;
 
