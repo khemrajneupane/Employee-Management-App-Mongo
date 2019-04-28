@@ -3,6 +3,8 @@ package fi.employee.employeerecord.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.constraints.NotEmpty;
+
 //
 //import javax.persistence.Entity;
 //import javax.persistence.GeneratedValue;
@@ -20,11 +22,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 //@Entity
 //@Table(name= "Employee")
@@ -35,6 +36,7 @@ public class Employee {
 	@Id
 	@Field
 	private String id;
+	
 	@Field
 	private String fname;
 	@Field
@@ -126,12 +128,25 @@ public class Employee {
 		this.task = task;
 	}
 
+//
+//	@Override
+//	public String toString() {
+//		return String.format(
+//				"Employee [id=%s, fname=%s, lname=%s, email=%s, phone=%s, address=%s, department=%s, task=%s]", id,
+//				fname, lname, email, phone, address, department, task);
+//	}
 
-	@Override
-	public String toString() {
-		return String.format(
-				"Employee [id=%s, fname=%s, lname=%s, email=%s, phone=%s, address=%s, department=%s, task=%s]", id,
-				fname, lname, email, phone, address, department, task);
-	}
-
+    @Override
+    public String toString() {
+    	ObjectMapper mapper = new ObjectMapper();
+    	
+    	String jsonString = "";
+		try {
+			mapper.enable(SerializationFeature.INDENT_OUTPUT);
+			jsonString = mapper.writeValueAsString(this);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+    	return jsonString;
+    }
 }

@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
 import fi.employee.employeerecord.domain.Department;
 import fi.employee.employeerecord.domain.DepartmentRepository;
 import fi.employee.employeerecord.domain.Employee;
@@ -33,19 +35,18 @@ private DepartmentRepository departmentrepository;
 @Autowired
 private TaskRepository taskrepository;
 
-
-//Show all books
-//@RequestMapping(value="/login")
-//public String login() {	
-//    return "login";
-//}
+@RequestMapping(value = {"/", "/login","/home"})
+public String login() {	
+    return "login";
+}
 
 // Add new employee
 //@PreAuthorize("hasAuthority('ADMIN')")
 @RequestMapping(value = "/add")
 public String addEmployee(Model model){
 	model.addAttribute("employee", new Employee());
-	//model.addAttribute("department", new Department());
+	model.addAttribute("department", new Department());
+	model.addAttribute("task", new Task());
 	model.addAttribute("department", departmentrepository.findAll());
 	model.addAttribute("task", taskrepository.findAll());
     return "addemployee";
@@ -91,15 +92,26 @@ public String historyStore(@PathVariable("id") String id,Model model) {
 	return "history";
 }
 //For Restful Api creation:
-//@RequestMapping(value="/employees", method = RequestMethod.GET)
-//public @ResponseBody List<Employee> employeeListRest(){
-//	return (List<Employee>) employeerepository.findAll();
-//}
-////For Restful Api creation to get employees by ids
-//@RequestMapping(value="/employee/{id}", method = RequestMethod.GET)
-//public @ResponseBody Optional<Employee> findEmployeeRest(@PathVariable("id") String id){
-//	return employeerepository.findById(id);
-//}
+//Get all 
+@RequestMapping(value="/employees/all", method = RequestMethod.GET)
+public @ResponseBody List<Employee> employeeListRest(){
+	return (List<Employee>) employeerepository.findAll();
+}
+//Get all Tasks only
+@RequestMapping(value="/tasks", method = RequestMethod.GET)
+public @ResponseBody List<Task> tasks(){
+	return (List<Task>) taskrepository.findAll();
+}
+//Get all Departments only
+@RequestMapping(value="/department", method = RequestMethod.GET)
+public @ResponseBody List<Department> department(){
+	return (List<Department>) departmentrepository.findAll();
+}
+//For Restful Api creation to get employees by ids
+@RequestMapping(value="/employee/{id}", method = RequestMethod.GET)
+public @ResponseBody Optional<Employee> findEmployeeRest(@PathVariable("id") String id){
+	return employeerepository.findById(id);
+}
 
 @RequestMapping(value = "/save", method = RequestMethod.POST)
 public String save(Employee employee, Department department, Task task){
@@ -144,8 +156,8 @@ return "editemployee";
 @RequestMapping(value = "/update/{id}")
 public String updateEmployee(@PathVariable("id") String id, Model model){
 model.addAttribute("employee", employeerepository.findById(id));
-model.addAttribute("department", departmentrepository.findAll());
-model.addAttribute("task", taskrepository.findAll());
+//model.addAttribute("department", departmentrepository.findAll());
+//model.addAttribute("task", taskrepository.findAll());
 return "history";
 }
 

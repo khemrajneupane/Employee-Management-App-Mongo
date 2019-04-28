@@ -30,7 +30,7 @@ public class Task {
 	@Field
 	private String description;
 	@Field
-	private int budget;
+	private int budget = 100;
 	@Field
 	private String isActive;
 

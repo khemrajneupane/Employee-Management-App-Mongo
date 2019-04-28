@@ -44,8 +44,8 @@
 					<th>Email</th>
 					<th>Phone</th>
 					<th>Address</th>
-					<th  colspan="4">Department</th>
-					<th  colspan="4">TaskName</th>
+					<th>Department</th>
+					<th>TaskName</th>
 					
 				</tr>
 			</thead>
@@ -58,18 +58,25 @@
 					<td th:text="${employee.email}"></td>
 					<td th:text="${employee.phone}"></td>
 					<td th:text="${employee.address}"></td>
-					<td scope="col" th:each="d : ${departments}" th:text="${d.name}"></td>
-					<td scope="col" th:each="t : ${tasks}" th:text="${t.name}"></td>
+		
+	<!--			
+					<td style = "display:none" th:text="${employee.department.name}"></td>
+					<td style = "display:none" th:text="${employee.task.name}"></td>
+-->
+					<td th:each="d : ${departments}" th:text="${d.name}"></td>
+					<td th:each="t : ${tasks}" th:text="${t.name}"></td>
+	
 					<td><a
 						th:href="@{/delete/{id}(id=${employee.id})}"
 						class="btn btn-danger"><i class="fas fa-trash"> Trash</i></a></td>
-						
+					
 					<td><a th:href="@{/edit/{id}(id=${employee.id})}"
 						class="btn btn-xs btn-info"><i class="fa fa-refresh" aria-hidden="true"> Update</i></a></td>
 					<td><a th:href="@{/update/{id}(id=${employee.id})}"
 						class="btn btn-xs btn-info"><i class="fa fa-history" aria-hidden="true"> History</i></a></td>	
 
 				</tr>
+				
 			</tbody>
 		</table>
 		
