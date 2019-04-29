@@ -28,17 +28,35 @@ public class EmployeeRecordApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EmployeeRecordApplication.class, args);
 	}
+	private	EmployeeRepository emprepo;
+	private DepartmentRepository deprepo;
+//	private UserRepository usr;
+	private TaskRepository taskrepo;
+
+
+	public EmployeeRecordApplication(EmployeeRepository emprepo, DepartmentRepository deprepo, UserRepository usr, TaskRepository taskrepo) {
+		this.emprepo = emprepo;
+		this.deprepo = deprepo;
+//		this.usr = usr;
+		this.taskrepo = taskrepo;
+	}
+	
+	
 	@Bean
 	public ApplicationRunner demo(EmployeeRepository emprepo, DepartmentRepository deprepo, UserRepository usr, TaskRepository taskrepo) {
 		return (args) -> {
-			deprepo.save(new Department("IT"));
-			deprepo.save(new Department("Law"));
+			this.emprepo.deleteAll();
+			this.deprepo.deleteAll();
+			this.taskrepo.deleteAll();
+
+//			deprepo.save(new Department("IT"));
+//			deprepo.save(new Department("Law"));
 			deprepo.save(new Department("Marketing"));
-			taskrepo.save(new Task("Application","1979","Building app program",3500,"N"));
-			taskrepo.save(new Task("Advocacy","1980","Reviewing legal implications",7000,"Y"));
+//			taskrepo.save(new Task("Application","1979","Building app program",3500,"N"));
+//			taskrepo.save(new Task("Advocacy","1980","Reviewing legal implications",7000,"Y"));
 			taskrepo.save(new Task("Promotion","1980","4 ps of marketing",9000,"N"));
-			emprepo.save(new Employee("Madhan","Bhadari","madan@gadhan.com","45396108","Dhanushmod-9", deprepo.findByName("IT").get(0), taskrepo.findByName("Application").get(0)));
-			emprepo.save(new Employee("Khem","Neupane","khem@gmail.com","4444444","Tammistonkatu-9", deprepo.findByName("Law").get(0), taskrepo.findByName("Advocacy").get(0)));
+//			emprepo.save(new Employee("Madhan","Bhadari","madan@gadhan.com","45396108","Dhanushmod-9", deprepo.findByName("IT").get(0), taskrepo.findByName("Application").get(0)));
+//			emprepo.save(new Employee("Khem","Neupane","khem@gmail.com","4444444","Tammistonkatu-9", deprepo.findByName("Law").get(0), taskrepo.findByName("Advocacy").get(0)));
 			emprepo.save(new Employee("Babita","Gartaula","babi@gmail.com","555555","Tammistonkatu-9", deprepo.findByName("Marketing").get(0), taskrepo.findByName("Promotion").get(0)));
 			
 			//Create users: admin/admin user/user

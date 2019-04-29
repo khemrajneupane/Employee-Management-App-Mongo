@@ -22,7 +22,7 @@ public class Task {
 	@Id
 	@Field
 	private String id;
-	@Indexed
+//	@Indexed(unique=true)
 	@Field
 	private String name;
 	@Field
@@ -30,7 +30,7 @@ public class Task {
 	@Field
 	private String description;
 	@Field
-	private int budget = 100;
+	private int budget = 00;
 	@Field
 	private String isActive;
 

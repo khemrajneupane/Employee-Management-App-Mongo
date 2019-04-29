@@ -30,7 +30,7 @@ public class Department {
 	@Field
 	private String id;
 	
-	@Indexed
+//	@Indexed(unique=true)
 	@Field
 	private String name;
 
@@ -43,6 +43,14 @@ public class Department {
 		this.name = name;
 	}
 
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -50,11 +58,7 @@ public class Department {
 	public void setName(String name) {
 		this.name = name;
 	}
-//
-//	@Override
-//	public String toString() {
-//		return String.format("Department [id=%s, name=%s]", id, name);
-//	}
+
     @Override
     public String toString() {
     	ObjectMapper mapper = new ObjectMapper();

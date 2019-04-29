@@ -41,7 +41,7 @@ public class Employee {
 	private String fname;
 	@Field
 	private String lname;
-	@Indexed
+//	@Indexed(unique=true)
 	@Field
 	private String email;
 	@Field
